@@ -28,7 +28,7 @@ reads, BookmarkIt ensures that their saved content is easy to access and well-or
 ### Start the backend
 1. Make sure the script `/start-service.sh` is running
 2. Add a configuration to run the backend in your IDE 
-   * 2.1 Go to `Edit configurations` in your IDE 2.2 
+   * Go to `Edit configurations` in your IDE 
    * Add a new configuration of type `Application`
    * Point at the main class `com.bookmarkit.BookmarkItApplication`
 3. Run the configuration
@@ -41,3 +41,4 @@ reads, BookmarkIt ensures that their saved content is easy to access and well-or
 * Node.js
 * npm
 * Postgres
+* Docker/Podman
