@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: #fff 0 0 10px;
+  background-color: #fff;
+  padding: 50px;
+}
+

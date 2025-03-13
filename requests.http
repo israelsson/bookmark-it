@@ -1,0 +1,13 @@
+GET http://localhost:8080/api/bookmarks
+Accept: application/json
+
+###
+POST http://localhost:8080/api/bookmark/create
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Example Bookmark",
+  "url": "https://example.com",
+  "tags": "example"
+}
