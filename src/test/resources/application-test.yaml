@@ -1,0 +1,8 @@
+spring:
+  liquibase:
+    enabled: true
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:11.2:///piktiv-bookmark-service?TC_TMPFS=/test_tmpfs:rw
+    hikari:
+      connection-timeout: 1000

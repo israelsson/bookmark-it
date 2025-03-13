@@ -5,6 +5,7 @@ import ai.example.bookmarkit.adapters.api.dto.BookmarkCreateRequestDto;
 import ai.example.bookmarkit.adapters.api.dto.BookmarkMutationRequestDto;
 import ai.example.bookmarkit.adapters.api.dto.BookmarkResponseDto;
 import ai.example.bookmarkit.core.BookmarkService;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,36 +32,33 @@ public class BookmarkItController {
       path = AdapterConstants.BOOKMARKS_PATH,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public List<BookmarkResponseDto> getBookmarks() {
+  public ResponseEntity<List<BookmarkResponseDto>> getBookmarks() {
 
     log.info("Incoming request to get all bookmarks");
-
     final var bookmarks = bookmarkService.getAllBookmarks();
-    return bookmarks.stream()
+    return ResponseEntity.ok(bookmarks.stream()
         .map(BookmarkResponseDto::fromCoreModel)
-        .toList();
+        .toList());
   }
 
   @GetMapping(
       path = AdapterConstants.BOOKMARK_PATH + AdapterConstants.ID_PARAM,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public BookmarkResponseDto getBookmarkById(@PathVariable final int id) {
+  public ResponseEntity<BookmarkResponseDto> getBookmarkById(@PathVariable final int id) {
 
     log.info("Incoming request to get bookmark by ID: {}", id);
-
     final var bookmark = bookmarkService.getBookmarkById(id);
-    return bookmark != null ? BookmarkResponseDto.fromCoreModel(bookmark) : null;
+    return ResponseEntity.ok(BookmarkResponseDto.fromCoreModel(bookmark));
   }
 
   @PostMapping(
       path = AdapterConstants.BOOKMARK_PATH + AdapterConstants.CREATE_PATH,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<Void> createBookmark(@RequestBody BookmarkCreateRequestDto requestDto) {
+  public ResponseEntity<Void> createBookmark(@Valid @RequestBody BookmarkCreateRequestDto requestDto) {
 
     log.info("Incoming request to create new bookmark");
-
     bookmarkService.createBookmark(requestDto.toCoreModel());
     return ResponseEntity.noContent().build();
   }
@@ -71,7 +69,6 @@ public class BookmarkItController {
   public ResponseEntity<Void> deleteBookmark(@PathVariable final int id) {
 
     log.info("Incoming request to delete bookmark by ID: {}", id);
-
     bookmarkService.deleteBookmark(id);
     return ResponseEntity.noContent().build();
   }
@@ -81,6 +78,7 @@ public class BookmarkItController {
       produces = MediaType.APPLICATION_JSON_VALUE
   )
   public ResponseEntity<BookmarkResponseDto> updateBookmark(@RequestBody BookmarkMutationRequestDto requestDto) {
+
     log.info("Incoming request to update bookmark by ID: {}", requestDto.getId());
     final var updatedBookmark = bookmarkService.updateBookmark(requestDto.toCoreModel());
     return ResponseEntity.ok(BookmarkResponseDto.fromCoreModel(updatedBookmark));

@@ -54,7 +54,20 @@ function App() {
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
+    const urlPattern = new RegExp('^https?:\\/\\/.*\\..*');
+
+    if (!urlPattern.test(url)) {
+      alert('Please enter a valid URL.');
+      return;
+    }
+
+    if (!urlPattern.test(url)) {
+      alert('Please enter a valid URL.');
+      return;
+    }
+
     const newBookmark = { name, url, tag };
 
     try {

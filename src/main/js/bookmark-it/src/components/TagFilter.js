@@ -10,7 +10,7 @@ function TagFilter({ categories, selectedTag, setSelectedTag }) {
   };
 
   return (
-      <FormControl variant={"outlined"}>
+      <FormControl style={{width: 200}} variant={"outlined"}>
         <InputLabel>Filter by Tag</InputLabel>
         <Select value={selectedTag} onChange={handleChange}>
           <MenuItem value="">
