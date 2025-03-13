@@ -42,3 +42,8 @@ reads, BookmarkIt ensures that their saved content is easy to access and well-or
 * npm
 * Postgres
 * Docker/Podman
+
+### Possible improvements
+* Let the backend do the tag filtering
+* Store the tag categories in the database
+* Nicer gui
